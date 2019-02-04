@@ -13,28 +13,68 @@
 				color: maroon;
 			}
 			
-			.redText{
-				color: red;
-			}
+		    .violetText{
+				color:blueviolet;
+		    }
 
             #georgia{
                 font-family: Georgia;
             }
+
+            .unselectable{
+                user-select: none;
+            }
 		</style>
 		<script>
 			var clicks = 0;
+            var cursorAmount = 0;
+            var bonus = 0;
 			
+            setInterval(addBonus, 1000)
+            setInterval(update, 10)
+
 			function countUp() {
 				clicks = clicks + 1;
-				document.getElementById("counter").textContent = clicks + " Ice Cream";
 			}
-			
+
+            function update(){
+                clicks = parseFloat(clicks.toFixed(1))
+                calculateBonus()
+
+                document.getElementById("counter").textContent = clicks + " Ice Cream";
+                document.getElementById("cursorAmountDisplay").textContent = "Cursor x " + cursorAmount;
+                document.getElementById("generationBonus").textContent = "Generating " + bonus + " Extra Ice Cream per second";
+            }
+
+            function purchaseCursor(){
+                if (clicks >= 10){
+                    cursorAmount += 1;
+                    clicks -= 10;
+                } 
+                else if (clicks <= 10) {
+                    alert("Error, you do not have enough money to purchase a cursor.")
+                }
+            }
+
+            function calculateBonus() {
+                bonus = 0;
+                bonus += parseFloat((cursorAmount * 0.1).toFixed(1));
+            }
+
+            function addBonus() {
+                clicks += bonus
+            }
 		</script>
 	</head>
 	
 	<body>
 		<h1 id="georgia">Ice Cream Clicker</h1>
 		<h1 class="big" id="counter">0 Ice Cream</h1>
-		<img onclick="countUp()" id="cookie" src="https://images.vexels.com/media/users/3/143409/isolated/preview/660b9f099fff3269ede645377bc511bf-ice-cream-cartoon-by-vexels.png">
+        <img onclick="countUp()" id="cookie" src="https://images.vexels.com/media/users/3/143409/isolated/preview/660b9f099fff3269ede645377bc511bf-ice-cream-cartoon-by-vexels.png">
+        <div onclick="purchaseCursor()" style="background-color: aquamarine; height: 100px; width: 100px; left: 50px; top: 50px; position: absolute">
+            <p id="cursorAmountDisplay">Cursor x 0</p>
+            <p>$10</p>
+        </div>
+        <p class="violetText" id="generationBonus"></p>
 	</body>
 </html>
