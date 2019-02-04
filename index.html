@@ -13,7 +13,7 @@
 				color: maroon;
 			}
 			
-		    .violetText{
+		    #generationBonus{
 				color:blueviolet;
 		    }
 
@@ -23,10 +23,15 @@
 
             .unselectable{
                 user-select: none;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
             }
 		</style>
 		<script>
-			var clicks = 0;
+            var clicks = 0;
             var cursorAmount = 0;
             var bonus = 0;
 			
@@ -72,9 +77,9 @@
 		<h1 class="big" id="counter">0 Ice Cream</h1>
         <img onclick="countUp()" id="cookie" src="https://images.vexels.com/media/users/3/143409/isolated/preview/660b9f099fff3269ede645377bc511bf-ice-cream-cartoon-by-vexels.png">
         <div onclick="purchaseCursor()" style="background-color: aquamarine; height: 100px; width: 100px; left: 50px; top: 50px; position: absolute">
-            <p id="cursorAmountDisplay">Cursor x 0</p>
-            <p>$10</p>
+            <p class="unselectable" id="cursorAmountDisplay">Cursor x 0</p>
+            <p class="unselectable">$10</p>
         </div>
-        <p class="violetText" id="generationBonus"></p>
+        <p class="unselectable" id="generationBonus"></p>
 	</body>
 </html>
