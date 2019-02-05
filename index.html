@@ -77,8 +77,9 @@
                 document.getElementById("counter").textContent = clicks + " Ice Cream";
                 document.getElementById("cursorAmountDisplay").textContent = "Cursor x " + cursorAmount;
                 document.getElementById("generationBonus").textContent = "Generating " + bonus + " Extra Ice Cream per second";
+                document.getElementById("test").textContent = getCookie("cookieClicks");
                 
-                setCookie(cookieClicks, clicks, 365)
+                setCookie("cookieClicks", clicks, 365)
             }
 
             function purchaseCursor(){
@@ -111,5 +112,6 @@
             <p class="unselectable">$10</p>
         </div>
         <p class="unselectable" id="generationBonus"></p>
+        <p id="text">z</p>
 	</body>
 </html>
