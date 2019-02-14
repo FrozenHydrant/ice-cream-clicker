@@ -41,6 +41,7 @@
 			function countUp() {
 				clicks = clicks + 1;
 			}
+
             function update(){
                 clicks = parseFloat(clicks.toFixed(1))
                 calculateBonus()
@@ -49,6 +50,7 @@
                 document.getElementById("generationBonus").textContent = "Generating " + bonus + " Extra Ice Cream per second";
                 
             }
+
             function purchaseCursor(){
                 if (clicks >= 10){
                     cursorAmount += 1;
@@ -58,10 +60,12 @@
                     alert("Error, you do not have enough money to purchase a cursor.")
                 }
             }
+
             function calculateBonus() {
                 bonus = 0;
                 bonus += parseFloat((cursorAmount * 0.1).toFixed(1));
             }
+            
             function addBonus() {
                 clicks += bonus
             }
