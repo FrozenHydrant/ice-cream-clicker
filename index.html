@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Ice Cream Clicker</title>
+        <title>Ice Cream Clicker</title>
+        
 		<style>
 			body{
 				text-align: center;
@@ -16,11 +17,9 @@
 		    #generationBonus{
 				color:blueviolet;
 		    }
-
             #georgia{
                 font-family: Georgia;
             }
-
             .unselectable{
                 user-select: none;
                 -webkit-touch-callout: none;
@@ -29,43 +28,16 @@
                 -moz-user-select: none;
                 -ms-user-select: none;
             }
-		</style>
+        </style>
+        
 		<script>
-            if (getCookie("cookieClicks") != "") {
-                var clicks = getCookie("cookieClicks");
-            } 
-            else {
-                var clicks = 0;
-            }
+            var clicks = 0;
             var cursorAmount = 0;
             var bonus = 0;
 			
-            setInterval(addBonus, 1000)
-            setInterval(update, 10)
+            setInterval(addBonus, 1000);
+            setInterval(update, 10);
             
-            function setCookie(cname, cvalue, exdays) {
-                var d = new Date();
-                d.setTime(d.getTime() + (exdays*24*60*60*1000));
-                var expires = "expires="+ d.toUTCString();
-                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-            }
-            
-            function getCookie(cname) {
-                var name = cname + "=";
-                var decodedCookie = decodeURIComponent(document.cookie);
-                var ca = decodedCookie.split(';');
-                for(var i = 0; i <ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) == ' ') {
-                        c = c.substring(1);
-                    }
-                    if (c.indexOf(name) == 0) {
-                        return c.substring(name.length, c.length);
-                    }
-                }
-                return "";
-            }
-
 			function countUp() {
 				clicks = clicks + 1;
 			}
@@ -73,13 +45,10 @@
             function update(){
                 clicks = parseFloat(clicks.toFixed(1))
                 calculateBonus()
-
                 document.getElementById("counter").textContent = clicks + " Ice Cream";
                 document.getElementById("cursorAmountDisplay").textContent = "Cursor x " + cursorAmount;
                 document.getElementById("generationBonus").textContent = "Generating " + bonus + " Extra Ice Cream per second";
-                document.getElementById("test").textContent = getCookie("cookieClicks");
                 
-                setCookie("cookieClicks", clicks, 365)
             }
 
             function purchaseCursor(){
@@ -100,18 +69,18 @@
             function addBonus() {
                 clicks += bonus
             }
+
 		</script>
 	</head>
 	
 	<body>
 		<h1 id="georgia">Ice Cream Clicker</h1>
 		<h1 class="big" id="counter">0 Ice Cream</h1>
-        <img onclick="countUp()" id="cookie" src="https://images.vexels.com/media/users/3/143409/isolated/preview/660b9f099fff3269ede645377bc511bf-ice-cream-cartoon-by-vexels.png">
+        <img onclick="countUp()" id="cookie" src="ice-cream.png">
         <div onclick="purchaseCursor()" style="background-color: aquamarine; height: 100px; width: 100px; left: 50px; top: 50px; position: absolute">
             <p class="unselectable" id="cursorAmountDisplay">Cursor x 0</p>
             <p class="unselectable">$10</p>
         </div>
         <p class="unselectable" id="generationBonus"></p>
-        <p id="text">z</p>
 	</body>
 </html>
