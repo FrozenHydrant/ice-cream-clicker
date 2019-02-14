@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-        <title>Ice Cream Clicker</title>
-        
+		<title>Ice Cream Clicker</title>
+		
 		<style>
 			body{
 				text-align: center;
@@ -14,61 +14,73 @@
 				color: maroon;
 			}
 			
-		    #generationBonus{
+			#generationBonus{
 				color:blueviolet;
-		    }
-            #georgia{
-                font-family: Georgia;
-            }
-            .unselectable{
-                user-select: none;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-            }
-        </style>
-        
+			}
+			#georgia{
+				font-family: Georgia;
+			}
+			.unselectable{
+				user-select: none;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+			}
+		</style>
+		
 		<script>
-            var clicks = 0;
-            var cursorAmount = 0;
-            var bonus = 0;
+			var clicks = 0;
+			var cursorAmount = 0;
+			var truckAmount = 0;
+			var bonus = 0;
 			
-            setInterval(addBonus, 1000);
-            setInterval(update, 10);
-            
+			setInterval(addBonus, 1000);
+			setInterval(update, 10);
+			
 			function countUp() {
 				clicks = clicks + 1;
 			}
 
-            function update(){
-                clicks = parseFloat(clicks.toFixed(1))
-                calculateBonus()
-                document.getElementById("counter").textContent = clicks + " Ice Cream";
-                document.getElementById("cursorAmountDisplay").textContent = "Cursor x " + cursorAmount;
-                document.getElementById("generationBonus").textContent = "Generating " + bonus + " Extra Ice Cream per second";
-                
-            }
+			function update(){
+				clicks = parseFloat(clicks.toFixed(1))
+				calculateBonus()
+				document.getElementById("counter").textContent = clicks + " Ice Cream";
+				document.getElementById("cursorAmountDisplay").textContent = "Cursor x " + cursorAmount;
+				document.getElementById("truckAmountDisplay").textContent = "Truck x " + truckAmount;
+				document.getElementById("generationBonus").textContent = "Generating " + bonus + " Extra Ice Cream per second";
+				
+			}
 
-            function purchaseCursor(){
-                if (clicks >= 10){
-                    cursorAmount += 1;
-                    clicks -= 10;
-                } 
-                else if (clicks <= 10) {
-                    alert("Error, you do not have enough money to purchase a cursor.")
-                }
-            }
+			function purchaseCursor(){
+				if (clicks >= 10){
+					cursorAmount += 1;
+					clicks -= 10;
+				} 
+				else if (clicks < 10){
+					alert("Error, you do not have enough money to purchase a cursor.")
+				}
+			}
 
-            function calculateBonus() {
-                bonus = 0;
-                bonus += parseFloat((cursorAmount * 0.1).toFixed(1));
-            }
-            
-            function addBonus() {
-                clicks += bonus
-            }
+			function purchaseTruck(){
+				if (clicks >= 75){
+					truckAmount += 1;
+					clicks -= 75;
+				}
+				else if (clicks < 75){
+					alert("Error, you do not have enough money to purchase a truck.")
+				}
+			}
+
+			function calculateBonus() {
+				bonus = 0;
+				bonus += parseFloat((cursorAmount * 0.1).toFixed(1)) + parseFloat((truckAmount * 1).toFixed(1));
+			}
+
+			function addBonus() {
+				clicks += bonus
+			}
 
 		</script>
 	</head>
@@ -76,11 +88,15 @@
 	<body>
 		<h1 id="georgia">Ice Cream Clicker</h1>
 		<h1 class="big" id="counter">0 Ice Cream</h1>
-        <img onclick="countUp()" id="cookie" src="ice-cream.png">
-        <div onclick="purchaseCursor()" style="background-color: aquamarine; height: 100px; width: 100px; left: 50px; top: 50px; position: absolute">
-            <p class="unselectable" id="cursorAmountDisplay">Cursor x 0</p>
-            <p class="unselectable">$10</p>
-        </div>
-        <p class="unselectable" id="generationBonus"></p>
+		<img onclick="countUp()" id="cookie" src="ice-cream.png">
+		<div onclick="purchaseCursor()" style="background-color: aquamarine; height: 100px; width: 100px; left: 50px; top: 50px; position: absolute">
+			<p class="unselectable" id="cursorAmountDisplay">Cursor x 0</p>
+			<p class="unselectable">$10</p>
+		</div>
+		<div onclick="purchaseTruck()" style="background-color: aquamarine; height: 100px; width: 100px; left: 50px; top: 160px; position: absolute">
+			<p class="unselectable" id="truckAmountDisplay">Truck x 0</p>
+			<p class="unselectable">$75</p>
+		</div>
+		<p class="unselectable" id="generationBonus"></p>
 	</body>
 </html>
