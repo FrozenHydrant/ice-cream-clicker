@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Ice Cream Clicker</title>
+		<link rel="shortcut icon" href="ice-cream.ico">
 		
 		<style>
 			body{
@@ -35,11 +36,15 @@
 			var cursorAmount = 0;
 			var truckAmount = 0;
 			var bonus = 0;
+			var browserSize = Math.max(document.documentElement.clientWidth,window.innerWidth||0);
 			
 			setInterval(addBonus, 1000);
 			setInterval(update, 10);
 			
-			function countUp() {
+			function pageLoad(){
+				document.getElementById("upgradeCursorMouseClickMultiplier").style = "background-color: aquamarine; height: 32px; width: 32px; left: " + (browserSize - 82).toString() + "px; top: 50px; position: absolute";
+			}
+			function countUp(){
 				clicks = clicks + 1;
 			}
 
@@ -85,7 +90,7 @@
 		</script>
 	</head>
 	
-	<body>
+	<body onload="pageLoad()">
 		<h1 id="georgia">Ice Cream Clicker</h1>
 		<h1 class="big" id="counter">0 Ice Cream</h1>
 		<img onclick="countUp()" id="cookie" src="ice-cream.png">
@@ -97,6 +102,8 @@
 			<p class="unselectable" id="truckAmountDisplay">Truck x 0</p>
 			<p class="unselectable">$75</p>
 		</div>
+
+		<div style="background-color: aquamarine; height: 32px; width: 32px; left: 50px; top: 50px; position: absolute" id="upgradeCursorMouseClickMultiplier"></div>
 		<p class="unselectable" id="generationBonus"></p>
 	</body>
 </html>
